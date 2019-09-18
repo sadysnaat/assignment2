@@ -33,7 +33,6 @@ func (m *Manager) Save(p *property.Property) error {
 	}
 
 	fmt.Println(p.Name, p.Color, p.Cost)
-	fmt.Println(fmt.Sprintf(insertProperties, p.Name, p.Cost, p.Color))
 	_, err = tx.Exec(fmt.Sprintf(insertProperties, p.Name, p.Cost, p.Color))
 	if err != nil {
 		return err

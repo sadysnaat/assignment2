@@ -7,6 +7,8 @@ type Property struct {
 	Color string
 }
 
+// Data Mapper pattern where in memory struct is separate from persistence layer
+// https://martinfowler.com/eaaCatalog/dataMapper.html
 type Mapper interface {
 	Save(p *Property) error
 	GetProperties() ([]*Property, error)

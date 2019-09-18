@@ -12,13 +12,16 @@ import (
 var (
 	mysqlflag    = flag.Bool("mysql", false, "if you want to use mysql")
 	postgresflag = flag.Bool("postgres", false, "if you want to use postgres")
-	//uri = flag.String("uri", "", "uri for the database")
 )
 
 func main() {
 	flag.Parse()
 
+	// as both store mysql and postgres manager fulfil the property mapper
+	// this can be initialised according to the datasource switch and passed around
+	// and use to manage properties via the interface methods
 	var pm property.Mapper
+
 	if *mysqlflag == *postgresflag {
 		if *mysqlflag {
 			fmt.Println("you can use only one data store at a time")
@@ -63,6 +66,6 @@ func main() {
 	}
 
 	for key, prop := range ps {
-		fmt.Println(key, prop)
+		fmt.Printf("%d name=%s cost=%d color=%s\n", key, prop.Color, prop.Cost, prop.Color)
 	}
 }
